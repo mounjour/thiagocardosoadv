@@ -113,7 +113,7 @@
         }
 
         .hero-logo img,.hero-logo2 img{
-            width: 350px;
+            width: 550px;
             height: auto;
         }
 
@@ -171,12 +171,24 @@
 
         .about-image img {
             width: 80%;
+            display: flex;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
         }
+        .about-image2{
+            display: none;
+        }
+        .about-image2 img{
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
 
+        }
         .about-content {
+            position: relative;
+            z-index: 2;
             color: #fff;
         }
 
@@ -190,6 +202,7 @@
             color: var(--orange);
         }
         .about-content p {
+
             font-size: 1.1rem;
             line-height: 1.7;
             color: rgba(255, 255, 255, 0.8);
@@ -247,7 +260,7 @@
                 background: linear-gradient(to bottom, var(--fundo), transparent);
             }
         .carousel-section .container .btn{
-            background: var(--orange);
+            background: #06ff49;
         }
         .carousel-section h2 {
             font-size: 2.5rem;
@@ -407,15 +420,15 @@
         }
         .cards-section .container .btn{
             margin-top: 50px;
-            background: var(--orange);
+            background: #06ff49;
             animation: animate-pulse2 3s linear infinite;
         }
         @keyframes animate-pulse2{
             0%{
-                box-shadow: 0 0 0 0 var(--orange),  0 0 0 0 var(--orange);
+                box-shadow: 0 0 0 0 #06ff49,  0 0 0 0 #06ff49;
             }
             40%{
-                box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 0 var(--orange);
+                box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 0 #06ff49;
             }
             80%{
                 box-shadow: 0 0 0 50px rgba(255,109,74,0.0),  0 0 0 30px rgba(255,109,74,0);
@@ -645,6 +658,14 @@
             }
         }
         @media (max-width: 768px) {
+            .hero{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .about-content p{
+                margin-top: 30px;
+            }
             .carousel-section h2{
                 margin-top: 70px;
             }
@@ -672,6 +693,12 @@
                 background: url("fundo-lp2.png");
                 background-size: cover;
                 background-position: center;
+            }
+            .about-image{
+                display: none;
+            }
+            .about-image2{
+                display: flex;
             }
             .about-image img{
                 width: 100%;
@@ -752,7 +779,7 @@
                 display: flex;
             }
             .hero-logo2 img{
-                width: 260px;
+                width: 300px;
             }
             .btn i{
                 margin-right: 5px;
@@ -816,6 +843,7 @@
 <body>
     <!-- Hero Section -->
     <section class="hero">
+        <p style="background: rgb(0, 19, 61); padding-top: 10px; text-align: center; width: 100%; border-bottom: 1px solid rgba(255, 255, 255, 0.342); opacity: 1;"><i class="fa-solid fa-phone"></i> (67) 993172313<br><br></p>
         <div class="hero-content">
             <div class="hero-text">
                 <div class="hero-logo">
@@ -842,10 +870,10 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
             <h2>Está enfrentando algum desses problemas?</h2>
             <div class="cards-grid">
                 <div class="card">
-                    <img src="cards/card1.png" alt="Conteúdo 1">
+                    <img src="cards/card3.png" alt="Conteúdo 3">
                     <div class="card-content">
-                        <h3>Defesa em Flagrante</h3>
-                        <p>Conheça seus direitos fundamentais em um processo criminal e como eles podem protegê-lo.</p>
+                        <h3>Flagrante delito</h3>
+                        <p>Saiba o que fazer em caso de prisão em flagrante e quais são seus direitos nesse momento.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -853,13 +881,6 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
                     <div class="card-content">
                         <h3>Tráfico de drogas</h3>
                         <p>Defesa técnica especializada para casos de acusação por tráfico de entorpecentes.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="cards/card3.png" alt="Conteúdo 3">
-                    <div class="card-content">
-                        <h3>Flagrante delito</h3>
-                        <p>Saiba o que fazer em caso de prisão em flagrante e quais são seus direitos nesse momento.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -874,6 +895,13 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
                     <div class="card-content">
                         <h3>Progressão de regime</h3>
                         <p>Como funciona a progressão de regime e os requisitos para conquistar esse benefício.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="cards/card7.png" alt="Conteúdo 5">
+                    <div class="card-content">
+                        <h3>Apreensão de bens e veículos</h3>
+                        <p>Não deixe seu patrimônio deteriorar no pátio ou suas contas bloqueadas por tempo indeterminado. Lutamos contra excessos da justiça para garantir que você retome a posse de seus veículos e bens fundamentais para sua vida e trabalho.</p>
                     </div>
                 </div>
                 <div class="card">
@@ -894,25 +922,26 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
                 <img src="escritorio.jpeg" alt="Escritório">
             </div>
             <div class="about-content">
-                <h2>10 anos guiando pessoas com inteligência, preparo e coragem.</h2>
-                <p>Com uma trajetória de dedicação à justiça, o advogado <strong>Thiago Cardoso</strong> consolidou sua reputação ao longo de <strong>10 anos de atuação</strong>. Especialista na área penal, ele pauta seu trabalho pela análise minuciosa de cada caso, unindo conhecimento técnico a uma postura estratégica essencial para enfrentar desafios jurídicos complexos.</p>
-                <p>Ao longo de sua carreira, Thiago já atuou em <strong>+ 300 processos</strong>, acumulando vasta experiência prática em tribunais e audiências. Essa bagagem permite uma visão aguda do sistema processual, garantindo que o direito de defesa seja exercido com o máximo <strong>rigor ético</strong> e eficiência em todas as instâncias.</p>
-                <p>Seu trabalho é reconhecido pela transparência e pela busca constante por soluções inovadoras. Como defensor da <strong>liberdade</strong> e do devido processo legal, sua atuação combativa transforma seu nome em uma referência de confiança e <strong>excelência jurídica</strong> no cenário criminal.</p>
-                
+                <div class="about-image2">
+                    <img src="escritorio.jpeg" alt="Escritório">
+                </div>
+                <!--<h2><br>Sou o Dr. Thiago Cardoso, há 10 anos guiando pessoas com inteligência, preparo e coragem.</h2>-->
+
+                <p>Com uma trajetória dedicada à justiça, consolidei minha reputação ao longo de <strong>10 anos de atuação</strong>. Como especialista na área penal, pauto meu trabalho pela análise minuciosa de cada caso, unindo conhecimento técnico a uma postura estratégica essencial para enfrentar desafios jurídicos complexos.</p>
+                <p>Ao longo da minha carreira, já atuei em <strong>mais de 300 processos</strong>, acumulando vasta experiência prática em tribunais e audiências. Essa bagagem me permite ter uma visão aguda do sistema processual, garantindo que o direito de defesa seja exercido com o máximo <strong>rigor ético</strong> e eficiência em todas as instâncias.</p>
+                <p>Meu trabalho é reconhecido pela transparência e pela busca constante por soluções inovadoras. Como defensor da <strong>liberdade</strong> e do devido processo legal, minha atuação combativa reflete meu compromisso em ser uma referência de confiança e <strong>excelência jurídica</strong> no cenário criminal.</p>
                 <div class="oab-numbers">
                     <p>OAB 54.518</p>
                 </div>
-
                 <a href="https://wa.me/5567993172313?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" class="btn"><i class="fa-brands fa-whatsapp"></i> Tire suas dúvidas</a>
             </div>
         </div>
     </section>
-
     <!-- Carousel Section - AGORA COM CARDS EM TELA CHEIA -->
     <section class="carousel-section">
         <div class="container">
-            <h2>Está sendo investigado, acusado ou preso em flagrante?</h2>
-            <p class=".subtitle">Fale agora comigo, sou o Dr. Thiago Cardoso, advogado criminalista e posso te ajudar!</p>
+            <!--<h2>Está sendo investigado, acusado ou preso em flagrante?</h2>-->
+            <!--<p class=".subtitle">Fale agora comigo, sou o Dr. Thiago Cardoso, advogado criminalista e posso te ajudar!</p>-->
             <div class="carousel-container">
                 <button class="carousel-btn prev" onclick="moveCarousel(-1)">←</button>
                 <button class="carousel-btn next" onclick="moveCarousel(1)">→</button>
@@ -1079,7 +1108,7 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
             if(user==false){
                 moveCarousel(1)
             }
-        }, 5000)
+        }, 3000)
         // Opcional: Adiciona suporte para teclas do teclado no carrossel
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') {
