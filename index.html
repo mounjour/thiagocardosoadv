@@ -254,6 +254,65 @@
             border-radius: 2px;
         }
 
+        /* Zonas de Atuação Section */
+        .zonas-atuacao {
+            background: var(--fundo);
+            padding: 20px 0 80px 0;
+            text-align: center;
+        }
+
+        .zonas-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .zonas-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .map-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+        }
+
+        .map-buttons {
+            display: flex;
+            width: 100%;
+            margin-top: 15px;
+            gap: 15px;
+        }
+
+        .map-btn {
+            flex: 1;
+            background: var(--fundo);
+            color: #fff;
+            border: 1px solid var(--orange);
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .map-btn:hover, .map-btn.active {
+            background: var(--orange);
+            color: var(--fundo);
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+        }
+
         /* Carousel Section - ATUALIZADO para cards em tela cheia */
         .carousel-section {
             position: relative;
@@ -691,6 +750,10 @@
             }
         }
         @media (max-width: 768px) {
+            .zonas-atuacao{
+                padding-top: 80px;
+                padding-bottom: 30px;
+            }
             .hero{
                 flex-direction: column;
                 align-items: center;
@@ -736,7 +799,7 @@
             .about-image img{
                 width: 100%;
             }
-            .about-content h2,.carousel-section h2, .cards-section h2{
+            .about-content h2, .carousel-section h2, .cards-section h2, .zonas-header h2 {
                 font-size: 1.8rem;
             }
             .about-content p{
@@ -797,9 +860,7 @@
         }
 
         @media (max-width: 768px) {
-            .numero{
-                display: flex;
-            }
+
             .about{
                 padding: 0;
             }
@@ -975,6 +1036,22 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
             </div>
         </div>
     </section>
+    <!-- Zonas de Atuação Section -->
+    <section class="zonas-atuacao">
+        <div class="container">
+            <div class="zonas-header">
+                <h2>Área de Atuação</h2>
+                <p class="zonas-subtitle">Atendemos presencialmente e online em toda a região de fronteira, oferecendo suporte jurídico especializado.</p>
+            </div>
+            <div class="map-container">
+                <iframe id="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115935.25700755866!2d-55.79524022416345!3d-22.534888133501768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9462719273c5d64f%3A0xe5a3c2007cebd86b!2sPonta%20Por%C3%A3%2C%20MS!5e0!3m2!1spt-BR!2sbr!4v1713361592389!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-buttons">
+                <button onclick="changeMap('ms', this)" class="map-btn">Mato Grosso do Sul</button>
+                <button onclick="changeMap('go', this)" class="map-btn">Goiás</button>
+            </div>
+        </div>
+    </section>
     <!-- Carousel Section - AGORA COM CARDS EM TELA CHEIA -->
     <section class="carousel-section">
         <div class="container">
@@ -1108,6 +1185,21 @@ Atendimento rápido, estratégico e sigiloso - 24h (Região de Ponta Porã - MS 
 
     <script>
         var user = false
+
+        // Função para alternar os mapas
+        function changeMap(state, btn) {
+            const iframe = document.getElementById('map-iframe');
+            const btns = document.querySelectorAll('.map-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            if (state === 'ms') {
+                iframe.src = "https://maps.google.com/maps?q=Estado+de+Mato+Grosso+do+Sul&t=&z=6&ie=UTF8&iwloc=&output=embed";
+            } else if (state === 'go') {
+                iframe.src = "https://maps.google.com/maps?q=Estado+de+Goi%C3%A1s&t=&z=6&ie=UTF8&iwloc=&output=embed";
+            }
+        }
+
         // Função para o carrossel - AGORA OTIMIZADA PARA CARDS EM TELA CHEIA
         function moveCarousel(direction) {
             const track = document.getElementById('carouselTrack');
