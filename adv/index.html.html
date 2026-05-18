@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Advogado - Assessoria Jurídica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Utilitários */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #d9bd95;
+            color: black;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background:  url('fundo-lp.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-logo {
+            margin-bottom: 40px;
+        }
+
+        .hero-logo img {
+            width: 350px;
+            height: auto;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+        }
+
+        .hero-image img {
+            max-width: 80%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        /* About Section */
+        .about {
+            background: #1a1a1a;
+            padding: 100px 0;
+        }
+
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content {
+            color: #fff;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .oab-numbers {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .oab-numbers p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .oab-numbers p::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Carousel Section - ATUALIZADO para cards em tela cheia */
+        .carousel-section {
+            background: #222;
+            padding: 80px 0;
+        }
+
+        .carousel-section .container {
+            text-align: center;
+        }
+
+        .carousel-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            margin: 60px 0;
+            width: 100%;
+            padding: 0 60px; /* Espaço para as setas */
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 20px 0;
+            width: 100%;
+            scroll-snap-type: x mandatory;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-item {
+            flex: 0 0 calc(100% - 30px); /* 100% da largura menos o gap */
+            max-width: calc(100% - 30px);
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: left;
+            transition: all 0.3s ease;
+            scroll-snap-align: start;
+        }
+
+        .carousel-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: #303030;
+        }
+
+        .carousel-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .carousel-item h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .carousel-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel-item .highlight {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-btn.prev {
+            left: -10px;
+        }
+
+        .carousel-btn.next {
+            right: -10px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0 40px;
+            }
+            
+            .carousel-item {
+                padding: 30px;
+            }
+            
+            .carousel-item h3 {
+                font-size: 1.8rem;
+            }
+            
+            .carousel-item p {
+                font-size: 1.1rem;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-item {
+                padding: 25px;
+            }
+            
+            .carousel-item h3 {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-item p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Cards Section */
+        .cards-section {
+            background: #222;
+            padding: 80px 0;
+        }
+
+        .cards-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: #303030;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: #222;
+            padding: 80px 0;
+        }
+
+        .faq h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #303030;
+        }
+
+        .faq-question h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+            flex: 1;
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon::before {
+            width: 2px;
+            height: 16px;
+            top: 4px;
+            left: 11px;
+        }
+
+        .faq-icon::after {
+            width: 16px;
+            height: 2px;
+            top: 11px;
+            left: 4px;
+        }
+
+        .faq-item.active .faq-icon::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #222;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .faq-answer p {
+            padding: 0 25px 25px 25px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                justify-content: center;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-bottom: 40px;
+            }
+
+            .hero-text .subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                justify-content: center;
+            }
+
+            .about .container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .oab-numbers {
+                justify-content: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-logo">
+                    <img src="logo.png" alt="Logo">
+                </div>
+                <h1>Enfrentar um crime assusta. Ter alguém que te escuta e te defende faz toda a diferença.</h1>
+                <p class="subtitle">Assessoria jurídica com escuta ativa, estratégia e discrição — da delegacia às instâncias superiores. Fale agora pelo WhatsApp.</p>
+                <a href="#" class="btn">Fale com um profissional</a>
+            </div>
+            <div class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1575505586569-4c0d9b9b9b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Escritório">
+            </div>
+            <div class="about-content">
+                <h2>13 anos guiando pessoas com inteligência, preparo e coragem.</h2>
+                <p>Meu compromisso é lutar com seriedade por quem precisa de orientação firme e atuação estratégica. Cada caso carrega um universo de complexidades, e é com foco, preparo e calma que conduzo cada etapa do processo.</p>
+                <p>Ao longo da minha trajetória, enfrentei casos delicados e desafiadores. A experiência me ensinou a agir com inteligência e posicionamento claro, sempre com respeito à dignidade de quem confia sua história às minhas mãos.</p>
+                <p>Atuo presencialmente na região metropolitana de Porto Alegre e na Grande Florianópolis. Para demais cidades e estados, realizo atendimentos on-line com a mesma dedicação, sigilo e cuidado em cada detalhe.</p>
+                
+                <div class="oab-numbers">
+                    <p>OAB/SC 33.163</p>
+                    <p>OAB/RS 136.111-A</p>
+                </div>
+
+                <a href="#" class="btn">Tire suas dúvidas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section - AGORA COM CARDS EM TELA CHEIA -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2>Atuação ampla, técnica e estratégica para os momentos mais delicados</h2>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">←</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">→</button>
+                
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Direito Criminal">
+                        <h3>Direito Criminal</h3>
+                        <p>Defesa estratégica em todas as fases do processo criminal, desde o inquérito policial até os tribunais superiores. Atuação focada em garantir seus direitos fundamentais, liberdade e a melhor solução para seu caso, seja na esfera estadual ou federal.</p>
+                        <p>Com mais de uma década de experiência, desenvolvemos teses de defesa sólidas e personalizadas para cada situação, considerando todas as nuances e particularidades do seu caso.</p>
+                        <p class="highlight">• Inquérito policial • Ação penal • Recursos • Tribunais superiores</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Tribunal do Júri">
+                        <h3>Tribunal do Júri</h3>
+                        <p>Atuação especializada em crimes dolosos contra a vida, com preparo técnico e argumentação persuasiva perante o conselho de sentença. Preparação minuciosa de teses defensivas, estudo aprofundado das provas e estratégias personalizadas para cada julgamento.</p>
+                        <p>Nosso diferencial está na capacidade de traduzir teses jurídicas complexas em argumentos claros e convincentes para os jurados, sempre com respeito à dignidade e à história de cada cliente.</p>
+                        <p class="highlight">• Homicídio • Feminicídio • Infanticídio • Aborto • Lesão corporal seguida de morte</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Execução Penal">
+                        <h3>Execução Penal</h3>
+                        <p>Acompanhamento completo de todas as fases da execução penal, desde o ingresso no sistema prisional até a liberdade definitiva. Atuamos na conquista e manutenção de benefícios, progressões de regime e todas as questões relacionadas ao cumprimento da pena.</p>
+                        <p>Acompanhamos de perto cada etapa, garantindo que todos os prazos sejam cumpridos e que seus direitos sejam respeitados durante todo o período de execução da pena.</p>
+                        <p class="highlight">• Progressão de regime • Livramento condicional • Indulto • Comutação de pena • Transferência de presídio</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Habeas Corpus">
+                        <h3>Habeas Corpus</h3>
+                        <p>Elaboração e impetração estratégica de habeas corpus em todas as instâncias, desde os tribunais de justiça até o Supremo Tribunal Federal. Atuação emergencial 24 horas para situações que exigem resposta imediata.</p>
+                        <p>Nossa experiência na impetração de habeas corpus nos permite identificar rapidamente as melhores teses para garantir a liberdade ou prevenir constrangimentos ilegais, com atuação ágil e tecnicamente fundamentada.</p>
+                        <p class="highlight">• Habeas corpus preventivo • Habeas corpus liberatório • Habeas corpus contra ilegalidades • Relaxamento de prisão</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="btn">Fale com um profissional</a>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+        <div class="container">
+            <h2>Conteúdos que orientam e protegem — veja o que você precisa saber</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Conteúdo 1">
+                    <div class="card-content">
+                        <h3>Direitos do acusado</h3>
+                        <p>Conheça seus direitos fundamentais em um processo criminal e como eles podem protegê-lo.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Conteúdo 2">
+                    <div class="card-content">
+                        <h3>Difamação e calúnia</h3>
+                        <p>Entenda as diferenças entre crimes contra a honra e como se defender dessas acusações.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Conteúdo 3">
+                    <div class="card-content">
+                        <h3>Flagrante delito</h3>
+                        <p>Saiba o que fazer em caso de prisão em flagrante e quais são seus direitos nesse momento.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Conteúdo 4">
+                    <div class="card-content">
+                        <h3>Fiança criminal</h3>
+                        <p>Quando é possível pagar fiança e como funciona esse direito em diferentes tipos de crime.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Conteúdo 5">
+                    <div class="card-content">
+                        <h3>Progressão de regime</h3>
+                        <p>Como funciona a progressão de regime e os requisitos para conquistar esse benefício.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Conteúdo 6">
+                    <div class="card-content">
+                        <h3>Prescrição penal</h3>
+                        <p>Entenda o que é prescrição penal e quando ela pode beneficiar o acusado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Perguntas frequentes</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>O que fazer se for abordado pela polícia?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Mantenha a calma, identifique-se e pergunte o motivo da abordagem. Você tem direito a permanecer em silêncio e a contatar um advogado imediatamente. Não forneça informações além da sua identificação e não concorde com buscas sem a presença de um advogado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Quanto tempo posso ficar preso antes de uma decisão?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A prisão temporária tem duração máxima de 5 dias, prorrogável por mais 5 em casos de extrema necessidade. Já a prisão preventiva não tem prazo definido, mas deve ser revisada a cada 90 dias. Em ambos os casos, é fundamental ter um advogado acompanhando o prazo e solicitando relaxamento quando ilegal.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Como funciona a audiência de custódia?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>É uma audiência rápida onde o juiz avalia se a prisão em flagrante foi legal e se a liberdade provisória pode ser concedida, com ou sem medidas cautelares. O preso é apresentado ao juiz em até 24 horas após a prisão. É o momento ideal para solicitar relaxamento da prisão ou liberdade provisória.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Posso responder ao processo em liberdade?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, desde que não estejam presentes requisitos para a prisão preventiva. O juiz pode determinar medidas cautelares alternativas à prisão, como comparecimento periódico em juízo, proibição de ausentar-se da comarca, monitoramento eletrônico, entre outras. A regra no processo penal é a liberdade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>O que é acordo de não persecução penal?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>É um acordo oferecido pelo Ministério Público para evitar o processo penal, mediante o cumprimento de condições como prestação de serviços à comunidade, pagamento de multa ou outras medidas. É aplicável para crimes sem violência ou grave ameaça, com pena mínima inferior a 4 anos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Quando posso obter a progressão de regime?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Após cumprir parte da pena em regime fechado (1/6, ou fração maior em casos específicos como crimes hediondos), desde que apresente bom comportamento carcerário. Para crimes hediondos com resultado morte, o requisito é de 2/5 se primário e 3/5 se reincidente. É necessário também ter ocupação lícita e bom desempenho educacional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Sobre o escritório</h4>
+                    <p>Atuação especializada em direito criminal, com mais de 13 anos de experiência na defesa de clientes em Porto Alegre, Florianópolis e em todo o Brasil por meio de atendimento online.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <p>Porto Alegre/RS</p>
+                    <p>Florianópolis/SC</p>
+                    <p>(51) 99999-9999</p>
+                    <p>(48) 99999-9999</p>
+                    <p>contato@advogado.com.br</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Horário de atendimento</h4>
+                    <p>Segunda a Sexta: 9h às 18h</p>
+                    <p>Sábado: 9h às 12h (mediante agendamento)</p>
+                    <p>Atendimento 24h para urgências</p>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="LinkedIn">🔗</a>
+                        <a href="#" aria-label="WhatsApp">📱</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Advogado Criminalista. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Função para o carrossel - AGORA OTIMIZADA PARA CARDS EM TELA CHEIA
+        function moveCarousel(direction) {
+            const track = document.getElementById('carouselTrack');
+            const container = track.parentElement;
+            const itemWidth = track.children[0].offsetWidth + 30; // Largura do item + gap
+            
+            let newScrollLeft = track.scrollLeft + (direction * itemWidth);
+            
+            // Suaviza a rolagem para o próximo card
+            track.scrollTo({
+                left: newScrollLeft,
+                behavior: 'smooth'
+            });
+        }
+
+        // Função para o FAQ Accordion
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Fecha todos os outros itens
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Alterna o item clicado
+            if (!isActive) {
+                faqItem.classList.add('active');
+            } else {
+                faqItem.classList.remove('active');
+            }
+        }
+
+        // Opcional: Adiciona suporte para teclas do teclado no carrossel
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                moveCarousel(-1);
+            } else if (e.key === 'ArrowRight') {
+                moveCarousel(1);
+            }
+        });
+    </script>
+</body>
+</html>
